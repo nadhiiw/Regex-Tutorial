@@ -11,3 +11,17 @@ Regex (short for regular expression) is a string of text that allows you to crea
 * A regular expression used to match an e-mail address
 
 Regular expressions can also be used from the command line and within text-editors to find text within a file. 
+
+## Table of Contents
+
+- [Anchors](#anchors)
+- [Quantifiers](#quantifiers)
+- [OR Operator](#or-operator)
+- [Character Classes](#character-classes)
+- [Flags](#flags)
+- [Grouping and Capturing](#grouping-and-capturing)
+- [Bracket Expressions](#bracket-expressions)
+- [Greedy and Lazy Match](#greedy-and-lazy-match)
+- [Boundaries](#boundaries)
+- [Back-references](#back-references)
+- [Look-ahead and Look-behind](#look-ahead-and-look-behind)
