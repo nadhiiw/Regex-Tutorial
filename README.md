@@ -77,3 +77,38 @@ Examples of OR Operators are as follows:
 x(y|z)  matches a string that has x followed by y or z (and captures y or z)
 x[yz]   matches a string that has x, but without capturing b or c
 ```
+
+### Character Classes
+Character Classes (Character Set) tells the regex engine to match only one out serveral specific characters, such as digits, words, or whitespace
+
+Examples of Character Classes are as follows:
+
+* `\d` - matches a single character that is a digit
+* `\w` - matches a word character (any alphanumeric character plus underscore)
+* `\s` - matches a whitespace character (including tabs and line brakes)
+* `.` - matches any character
+* the capital case for any aformentioned characters will inverse the match
+* Examples:
+```
+\d    matches a single any digit 0-9
+\w    matches a single any character that is a-z
+\s    matches ` `
+.     matches any character
+\D    matches a single non-digit character
+\W    matches a single any non-character that is a-z
+\S    matches a single non-` `
+```
+
+### Flags
+Flags are optional parameters that we can add to a plain expression to make it search in a different way. Each flag is denoted by a single alphabetic character, and serves different purposes in modifying the expression's searching behavior.
+
+Examples of Flags are as follows:
+* `g` - Global, does not return after the first match, which restarted any subsequest searches from the end of the previous match (Makes the expression search for all occurences)
+* `m` - Multi-line, when enabled the Anchors (^ $) will match the start and end of a line, rather than the whole string
+* `i` - Insensitive, makes the entire expression case-insensitive
+* Examples:
+```
+/Hello/g   matches all `Hello` in the test
+/Hello/m   matches the beginning and ending of each line with `Hello`, rather than the whole string `Hello` itself
+/Hello/i   matches all `hello` despite case (Hello, hEllo, heLlo, hellO, hello, HELLO all match)
+```
