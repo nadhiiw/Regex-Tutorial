@@ -112,3 +112,44 @@ Examples of Flags are as follows:
 /Hello/m   matches the beginning and ending of each line with `Hello`, rather than the whole string `Hello` itself
 /Hello/i   matches all `hello` despite case (Hello, hEllo, heLlo, hellO, hello, HELLO all match)
 ```
+
+### Grouping and Capturing
+Grouping unifies a pattern or string so that it is matched in a complete block
+
+Examples of Grouping are as follows:
+* `()` - parentheses creates a capture group
+* `(?:)` - using `?:` disables the capturing group
+* `(?<>)` - using `?<>` puts a name to the group
+* Examples:
+```
+x(yz)           parentheses create a capturing group with value yz
+x(?:yz)*        using ?: we disable the capturing group
+x(?<bar>yz)     using ?<bar> we put a name to the group
+```
+
+### Bracket Expressions
+Bracket Expressions are characters enclosed by a bracket `[]` matching any single character within the brackets. 
+*note: if the first character within the brackets is a `^` then it signifies any chracter **not** in the list, and is unspecified whether it matches an encoding error. 
+
+Examples of Bracket Expressions are as follows: 
+* `[]` - matching any single character within the brackets
+* `[]%` - matching the string inside the brackets before the `%`
+* `[^]` - matching any string that has not a letter from within the brackets (negation of expression)
+* Examples:
+```
+[xyz]         matches a string that etiher has x or x y or x z (same as x|y|z)
+[x-y]         similar to case above
+[u-zU-Z0-9]   a string that represents a single hexadecimal digit, case insensitively
+[0-9]%        a string that has a character from 0-9 before a %
+[^a-zA-Z]     a string that has not a letter from a to z or from A to Z
+```
+### Greedy and Lazy Match
+Greedy and/or Lazy Matching are quantifies that expand the match as far as possible through the text. 
+
+Examples of Greedy and/or Lazy Matching are as follows:
+* `* + {}` - any one of these character can be used as a quanitifer for a Greedy or Lazy Match
+* Examples:
+```
+<.+?>     matches any character that is one or more times included inside `<` and `>`, and expands as needed.
+<[^<>]+>  matches any character expects `<` or `>` one or more times included inside `<` and `>`. 
+```
