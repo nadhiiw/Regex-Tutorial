@@ -153,3 +153,43 @@ Examples of Greedy and/or Lazy Matching are as follows:
 <.+?>     matches any character that is one or more times included inside `<` and `>`, and expands as needed.
 <[^<>]+>  matches any character expects `<` or `>` one or more times included inside `<` and `>`. 
 ```
+### Boundaries
+Not to be confused with actual characters, simply put, Boundaries are the places between characters. A Boundary should be thought of as a wall between any adjacent characters.
+There are two types of Boundaries, **Word** and ***Non-Word**, each denoted by a specific character. 
+
+Examples of Boundaries are as follows:
+* `\b` - A position that bounds a word, or where a word starts or ends. It denotes a place between a word and non-word character, at the start and end of a string.
+* `\B` - Exact opposite of a word boundary, the negation of `\b` and will match **any position a word boundary doesnt.** *
+* `*`Will match between a word and word character, as well as between a non-word and non-word character.
+* Examples of Boundaries are as follows:
+```
+`Hello World` has 12 total Boundaries with 8 Word Boundaries as seen below:
+|H|e|l|l|o| |W|o|r|l|d|
+^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+N W W W W N N W W W W N  -  N = Nonword Boundary \ W = Word Boundary
+\bxyz\b     matches a "whole words only search" for the string `xyz`
+\Bxyz\B     matches only if the pattern is fully surrounded by word characters `txyzt` would match the string `xyz` because it only has word boundaries
+```
+
+### Back-references
+When using Grouping (look above) you may Capture the Group, which is saved in memory for later use. Backreferencing is the name given to the action of using these matches. 
+Backreferencing is the refernce of a captured match, save in memory, by a captured group.
+
+Examples are a follows:
+```
+([xyz])\1              using \1 it matches the same text that was matched by the first capturing group
+([uwx])([yz])\2\1      we can use \2 (\3, \4, etc.) to identify the same text that was matched by the second (third, fourth, etc.) capturing group
+(?<bar>[xzy])\k<bar>   we put the name bar to the group and we reference it later (\k<foo>). The result is the same of the first regex
+```
+### Look-ahead and Look-behind
+Look-ahead and Look-behind (lookaround) are `start and end` zero-length assertions [Anchors](#anchors) but they actually match characters, then ends the match, returning only the result: **Match or No Match**. They do not cosume characters in the string, but only assert wether a match is possible or not. Lookaround allows you to create regular expressions that are impossible to create without them, or that would get very longwinded without them.
+
+Examples of Look-ahead and Look-behind are as follows:
+```
+h(?=t)       matches a h only if is followed by t, but t will not be part of the match
+(?<=t)h      matches a h only if is preceded by an t, but t will not be part of the match
+
+NEGATION OPERATOR
+
+h(?!t)       matches a h only if is not followed by t, but t will not be part of the match
+(?<!t)h      matches a h only if is not preceded by an t, but t will not be part of the match
